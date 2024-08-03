@@ -1,9 +1,7 @@
+{ ... }:
+
 {
-
   networking = {
-    
     networkmanager.enable = true;
-
   };
-
 }

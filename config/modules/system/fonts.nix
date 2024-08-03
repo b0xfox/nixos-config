@@ -1,5 +1,6 @@
-{ pkgs, ... }:{
+{ pkgs, ... }:
 
+{
     fonts.packages = with pkgs; [
         jetbrains-mono
         noto-fonts
@@ -9,5 +10,4 @@
         powerline-fonts
         powerline-symbols
     ];
-
 }

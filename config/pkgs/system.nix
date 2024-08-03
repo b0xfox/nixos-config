@@ -3,7 +3,6 @@
     environment.systemPackages = with pkgs; [
 
         # Wayland
-        hyprland
         swww
         waybar
         rofi-wayland
@@ -12,7 +11,7 @@
         # CLI
         git
         wget
-        alacritty
+        # alacritty
         # zsh
         # fish
         # kitty
@@ -21,11 +20,8 @@
         fastfetch
         nano
         neovim
-        emacs
-        #nixvim
-
-        # Misc
-        home-manager
+        # emacs
+        # nixvim
 
     ];
 
