@@ -11,7 +11,6 @@
         # CLI
         git
         wget
-        # alacritty
         # zsh
         # fish
         # kitty

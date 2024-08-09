@@ -4,6 +4,7 @@
 
         ### === APPS === ###
         brave
+        alacritty
         # firefox
         # gimp
         # discord
