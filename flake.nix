@@ -27,12 +27,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager-stable, home-manager-unstable, hyprland, stylix }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager-stable, home-manager-unstable, hyprland, stylix }@inputs:
   let
     system = "x86_64-linux";
-    pkgs = import (if systemSettings.nixBranch == "stable" then nixpkgs-stable else nixpkgs) { system = system; };
-    lib = pkgs.lib;
-    home-manager = home-manager-stable;
+
     systemSettings = {
       hostname = "box";
       timezone = "America/Detroit";
@@ -52,12 +50,10 @@
         # font = "Intel One Mono"; # Selected font
         editor = "nvim";
     };
-    pkgs = if systemSettings.nixBranch == "stable" then
-      import nixpkgs-stable { system = system; }
-    else
-      import nixpkgs { system = system; };
 
+    pkgs = import (if systemSettings.nixBranch == "stable" then nixpkgs-stable else nixpkgs) { system = system; };
     lib = pkgs.lib;
+
     home-manager = home-manager-stable;
   in
   {
@@ -82,8 +78,9 @@
         };
       };
     };
-  }
+  };
 }
+
 # overlays = [
 #     (self: super: {
 #         discord = super.discord.overrideAttrs (
