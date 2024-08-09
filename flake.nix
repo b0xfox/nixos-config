@@ -27,9 +27,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, home-manager-stable, home-manager-unstable, hyprland, stylix }: 
+  outputs = { self, nixpkgs, nixpkgs-stable, home-manager-stable, home-manager-unstable, hyprland, stylix }@inputs: 
   let
     system = "x86_64-linux";
+    pkgs = import (if systemSettings.nixBranch == "stable" then nixpkgs-stable else nixpkgs) { system = system; };
+    lib = pkgs.lib;
+    home-manager = home-manager-stable;
     systemSettings = {
       hostname = "box";
       timezone = "America/Detroit";
@@ -44,7 +47,7 @@
         name = "Goofyman";
         dotfilesDir = "~/.dotfiles";
         #theme = "io";
-        wmType = "hyprland"
+        wmType = "hyprland";
         term = "alacritty"; # Default terminal command;
         # font = "Intel One Mono"; # Selected font
         editor = "nvim";
@@ -70,7 +73,7 @@
     };
 
     nixosConfigurations = {
-      system = lib.nixosSystem {
+      default = lib.nixosSystem {
         system = system;
         modules = [ ./config/configuration.nix ];
         specialArgs = {
