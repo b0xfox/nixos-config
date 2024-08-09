@@ -1,22 +1,13 @@
-{ pkgs, userSettings, ... }:
+{ pkgs, ... }:
+
 {
-    imports = [
-        ./modules/user/pgks/alacritty.nix
-        ./modules/user/pgks/waybar.nix
-        ./modules/user/wm/hyprland.nix
-        ./pkgs/user.nix
-    ];
+  home.packages = with pkgs; [ neovim zsh ];
 
-    home = {
-        username = userSettings.username;
-        homeDirectory = "/home/${userSettings.username}";
-        stateVersion = "24.05";
+  programs.zsh.enable = true;
+  programs.zsh.ohMyZsh.enable = true;
 
-        sessionVariables = {
-            EDITOR = userSettings.editor;
-        };
-    };
-
-	# Let Home Manager install and manage itself.
-	programs.home-manager.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.config = {
+    # Hyprland-specific configuration
+  };
 }
